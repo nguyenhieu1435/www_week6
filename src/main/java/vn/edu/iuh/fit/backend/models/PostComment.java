@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.models;
+package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,13 +25,13 @@ public class PostComment {
     private String title;
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<PostComment> postComments;
-    @Column(columnDefinition = "TINYINT(1)", nullable = false)
+    @Column(columnDefinition = "bit(1)", nullable = false)
     private Boolean published;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String content;
-    @Column(name = "publishedAt", columnDefinition = "DATETIME")
+    @Column(name = "publishedAt", columnDefinition = "DATETIME(6)")
     private Instant publishedAt;
-    @Column(name = "createAt",columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "createAt",columnDefinition = "DATETIME(6)", nullable = false)
     private Instant createAt;
     @ManyToOne
     @JoinColumn(name = "parentId", referencedColumnName = "id")

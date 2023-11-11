@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.models;
+package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,23 +20,23 @@ public class User {
     private Long id;
     @Column(columnDefinition = "VARCHAR(15)")
     private String mobile;
-    @Column(name = "lastLogin",columnDefinition = "DATETIME")
+    @Column(name = "lastLogin",columnDefinition = "DATETIME(6)")
     private Instant lastLogin;
     @Column(name = "lastName",columnDefinition = "VARCHAR(50)")
     private String lastName;
     @Column(columnDefinition = "TINYTEXT")
     private String intro;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "tinytext")
     private String profile;
-    @Column(name = "registeredAt",columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "registeredAt",columnDefinition = "DATETIME(6)", nullable = false)
     private Instant registeredAt;
-    @Column(name = "passwordHash",columnDefinition = "VARCHAR(32)", nullable = false)
+    @Column(name = "passwordHash",columnDefinition = "VARCHAR(100)", nullable = false)
     private String passwordHash;
     @Column(name = "middleName", columnDefinition = "VARCHAR(50)")
     private String middleName;
     @Column(name = "firstName",columnDefinition = "VARCHAR(50)")
     private String firstName;
-    @Column(columnDefinition = "VARCHAR(50)")
+    @Column(columnDefinition = "VARCHAR(50)", unique = true)
     private String email;
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Post> posts;

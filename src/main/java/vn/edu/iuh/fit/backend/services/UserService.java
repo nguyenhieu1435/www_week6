@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.services;
+package vn.edu.iuh.fit.backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -6,8 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.models.User;
-import vn.edu.iuh.fit.repositories.UserRepository;
+import vn.edu.iuh.fit.backend.models.User;
+import vn.edu.iuh.fit.backend.repositories.UserRepository;
 
 import java.util.Optional;
 

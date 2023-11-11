@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.models;
+package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,18 +18,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition = "TINYINT(1)", nullable = false)
+    @Column(columnDefinition = "bit(1)", nullable = false)
     private Boolean published;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String content;
     @ManyToOne
     @JoinColumn(name = "parentId", referencedColumnName = "id")
     private Post parent;
     @Column(name = "metaTitle", columnDefinition = "VARCHAR(100)")
     private String metaTitle;
-    @Column(columnDefinition = "TINYTEXT")
+    @Column(columnDefinition = "tinytext")
     private String summary;
-    @Column(name = "createAt", columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "createAt", columnDefinition = "DATETIME(6)", nullable = false)
     private Instant createAt;
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Post> posts;
@@ -38,10 +38,14 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "authorId", referencedColumnName = "id", nullable = false)
     private User author;
-    @Column(name = "updateAt", columnDefinition = "DATETIME")
+    @Column(name = "updateAt", columnDefinition = "DATETIME(6)")
     private Instant updateAt;
-    @Column(name = "publishedAt",columnDefinition = "DATETIME")
+    @Column(name = "publishedAt",columnDefinition = "DATETIME(6)")
     private Instant publishedAt;
+
+    public Post(Long id) {
+        this.id = id;
+    }
 
     public Post(Boolean published, String content, Post parent, String metaTitle, String summary, Instant createAt, Set<Post> posts, String title, User author, Instant updateAt, Instant publishedAt) {
         this.published = published;
